@@ -1,0 +1,277 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------- fonts -------- */
+.cursive {
+  font-family: "Edu NSW ACT Hand Pre", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.playfair {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.sevillana {
+  font-family: "Sevillana", cursive;
+  font-style: normal;
+}
+
+/* -------- general -------- */
+.border { border: 1px solid black; }
+.border-white { border: 1px solid white; }
+.bg { background-color: #242424; }
+.bg-transparent-low{ background-color: #242424c7; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  position: relative;
+  margin: 1rem;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #242424;
+  border-radius: 18px;
+}
+
+.inner-app {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.card {
+  padding: 2em;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+/* -------- title menu-------- */
+#title-menu {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+#title-menu>div{
+  height: 100%;
+  /* border: 1px solid black; */
+  position: relative;
+}
+
+.title-pannel {
+  place-items: center;
+}
+
+.title {
+  font-size: 100px;
+  text-align: center;
+  margin: 100px;
+}
+
+.title>.title-small {
+  font-size: 70px;
+}
+
+.menu-pannel {}
+
+.menu {
+  position: absolute;
+  margin: 100px;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+
+#title-menu ul {
+  list-style: none;
+}
+
+#title-menu ul li {
+  margin:  10px 0;
+  padding: 1px 1px 1px 20px;
+  border-bottom: 1px solid transparent;
+}
+#title-menu ul li:hover {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+/* -------- Interface -------- */
+.hud { 
+  position: relative;
+  z-index: 1;
+}
+.dices {
+  display: flex;
+  margin: 0 auto;
+  width: fit-content;
+  border: 1px solid white;
+  border-top-color: transparent;
+  padding: 3px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.die {
+  width: 50px; height: 50px;
+  margin: 3px;
+  display: grid;
+  place-items: center;
+}
+
+.calendar {
+  padding: 5px 20px 20px ;
+  text-align: left;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: fit-content;
+  background-color: #242424;
+}
+.calendar-switch * {
+  height: 24px;
+}
+.calendar-switch {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#counter {
+  width: fit-content;
+  margin: auto;
+  border: 1px solid white;
+  border-bottom-color: transparent;
+  padding: 5px 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#counter h2 { margin: 0; }
+h5,h6 { margin: 0; }
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* -------- animation -------- */
+.grow { animation: growWidthHeight 2s forwards; }
+.shrink { animation: shringWidthHeight 2s forwards; }
+
+@keyframes shringWidthHeight {
+  0% { width: 100%; height: 100%; }
+  50% { width: 100%; height: 0%; }
+  100% { width: 0%; height: 0%; }
+}
+@keyframes growWidthHeight {
+  0% { width: 0%; height: 0%; }
+  50% { width: 100%; height: 0%; }
+  100% { width: 100%; height: 100%; }
+}
+/* -------- dialogue -------- */
+.dialogue-window {
+  position: absolute;
+  left:0 ;
+  right:0 ;
+  top:0 ;
+  bottom:0 ;
+  z-index: 10;
+}
+.dialogue {
+  position: absolute;
+  right: 30px;
+  top:0 ;
+  bottom:0 ;
+  width: 40%;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+.dialogue-text {
+  position: absolute;
+  top:30px; bottom: 30px; left: 30px; right: 20px;
+  /* border: 1px solid white; */
+  overflow-y: scroll;
+  text-align: left;
+}
+.dialogue button {
+  margin-bottom: 10px;
+}
+.portrait {
+  position: absolute;
+  height: 50%;
+  bottom:0;
+  width: 300px;
+  right: calc(30px + 40%);
+}
+.portrait-name {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  position: absolute;
+  bottom: 100px;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+}
+/* -------- word -------- */
+/* -------- word -------- */
+/* -------- word -------- */
