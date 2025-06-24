@@ -41,7 +41,13 @@ const display_option=(option)=> {
   $('.dialogue-text').append(`<br/>`)
   let aa = document.querySelectorAll('.dialogue button')
   aa[aa.length-1].addEventListener("click", ()=>{
-    dialogue_runner(option.next)
+    document.querySelectorAll('.dialogue-text button').forEach(element => {
+      element.remove()
+    });
+  $('.dialogue-text').append(`<p>${option.text}</p>`)
+  $('.dialogue-text').append(`<br/>`)
+  dialogue_runner(option.next)
+  $('.dialogue-text').scrollTop($(".dialogue-text")[0].scrollHeight)
   })
 }
 export const dialogue_runner =(index)=>{
