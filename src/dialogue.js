@@ -7,11 +7,13 @@ const lines = {
     options : [
       {
         text: "Think about the plan",
-        next: "1"
+        effect: "next_line",
+        props: "1"
       },
       {
         text: "Think about your body",
-        next: "2"
+        effect: "next_line",
+        props: "2"
       },
     ]
   },
@@ -29,7 +31,31 @@ const lines = {
   },
   "3" : {
     voice: "",
-    text: ""
+    text: "",
+    options: [
+      {
+        text : "Terminer",
+        effect: "end_dialogue",
+        props: "0"
+      }
+    ]
+  }
+}
+
+const effects = {
+  end_dialogue : () => {
+    $('.dialogue-text').html('')
+    $('.dialogue-window').hide()
+  },
+  next_line : (e, props) => {
+    document.querySelectorAll('.dialogue-text button').forEach(element => {
+      element.remove()
+    });
+    $('.dialogue-text').append(`<p>${e.target.innerText}</p>`)
+    $('.dialogue-text').append(`<br/>`)
+    dialogue_runner(props)
+    $('.dialogue-text').scrollTop($(".dialogue-text")[0].scrollHeight)
+
   }
 }
 
@@ -40,14 +66,8 @@ const display_option=(option)=> {
   $('.dialogue-text').append(`<button>${option.text}</button>`)
   $('.dialogue-text').append(`<br/>`)
   let aa = document.querySelectorAll('.dialogue button')
-  aa[aa.length-1].addEventListener("click", ()=>{
-    document.querySelectorAll('.dialogue-text button').forEach(element => {
-      element.remove()
-    });
-  $('.dialogue-text').append(`<p>${option.text}</p>`)
-  $('.dialogue-text').append(`<br/>`)
-  dialogue_runner(option.next)
-  $('.dialogue-text').scrollTop($(".dialogue-text")[0].scrollHeight)
+  aa[aa.length-1].addEventListener("click", (e)=>{
+    effects[option.effect](e, option.props)
   })
 }
 export const dialogue_runner =(index)=>{
