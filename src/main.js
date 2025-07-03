@@ -106,26 +106,51 @@ const battle = {
   callback: () => {
     let rows = 6
     let columns = 9
-    for (let x = 0; x<rows; x++) {
+    for (let y = 0; y<rows; y++) {
       let row = document.createElement('div')
       row.classList = "row"
-      row.id = "row" + x
+      row.id = "row" + y
       document.querySelector("#grid").append(row)
-      for (let y = 0; y< columns; y++){
+      for (let x = 0; x< columns; x++){
         let Case = document.createElement('div')
         Case.classList = "case"
         Case.id = "x" + x + "y" + y
-        document.querySelector("#row" + x).append(Case)
+        document.querySelector("#row" + y).append(Case)
       }
     }
 
+    let i = 0
     for (let player of players) {
       let pion = document.createElement('div')
       pion.classList = "pion " + player.color
+      pion.id = i
+      i++
       document.querySelector(`#x${player.x}y${player.y}`).append(pion)
     }
+
+    $('.pion').click( e => {
+      // console.log(players[e.target.id])
+      e.stopPropagation()
+      Active = e.target.id
+    })
+
+    $('.case').click(e => {
+      if (Active) {
+        const targetX = e.target.id[1]
+        const targetY = e.target.id[3]
+        const player = players[Active]
+        let caseActive = $(`#x${player.x}y${player.y}`)
+        let pionActive = $(`#x${player.x}y${player.y} .pion`)
+        player.move(targetX, targetY)
+        $(`#x${targetX}y${targetY}`).append(pionActive)
+        caseActive.html('')
+      }
+      Active = null
+    })
+    var Active = null
   }
 }
+
 
 const menu = {
     jsx: `
