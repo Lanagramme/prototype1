@@ -1,6 +1,7 @@
 import './style.css'
 import { setupCalendar } from './counter.js'
 import { dialogue_runner } from './dialogue.js';
+import { players } from "./battle.js"
 import $ from 'jquery';
 
 var open = 0
@@ -89,6 +90,43 @@ const calendar = {
   }
 }
 
+const battle = {
+  jsx : `
+    <div class="inner-app">
+      <h1>Turn 1</h1>
+      <div id="board">
+        <div id="grid"></div>
+        <div id="characters">
+          <div id="character1"></div>
+          <div id="character1"></div>
+        </div>
+      </div>
+    </div>
+  `,
+  callback: () => {
+    let rows = 6
+    let columns = 9
+    for (let x = 0; x<rows; x++) {
+      let row = document.createElement('div')
+      row.classList = "row"
+      row.id = "row" + x
+      document.querySelector("#grid").append(row)
+      for (let y = 0; y< columns; y++){
+        let Case = document.createElement('div')
+        Case.classList = "case"
+        Case.id = "x" + x + "y" + y
+        document.querySelector("#row" + x).append(Case)
+      }
+    }
+
+    for (let player of players) {
+      let pion = document.createElement('div')
+      pion.classList = "pion " + player.color
+      document.querySelector(`#x${player.x}y${player.y}`).append(pion)
+    }
+  }
+}
+
 const menu = {
     jsx: `
       <div id="title-menu" class="screen">
@@ -102,7 +140,7 @@ const menu = {
           <div class="menu">
             <ul>
               <li id="continue-btn">CONTINUE</li>
-              <li>NEW GAME</li>
+              <li id="new-btn">NEW GAME</li>
               <li>LOAD GAME</li>
               <li>SETTINGS</li>
               <li>QUIT</li>
@@ -115,10 +153,12 @@ const menu = {
     `,
   callback: () => {
     document.querySelector('#continue-btn')?.addEventListener('click', start);
+    document.querySelector('#new-btn')?.addEventListener('click', toBattle);
   }
 } 
 
 const start = ()=> { Render('#app', calendar) }
+const toBattle = ()=> { Render('#app', battle) }
 
 const Render = (selector, component) => { 
   const el = $(selector);

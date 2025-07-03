@@ -272,6 +272,40 @@ h5,h6 { margin: 0; }
   margin: 0;
   padding: 10px;
 }
+/* -------- battle -------- */
+#board {
+  display: grid;
+  grid-template-rows: 1fr 200px;
+}
+
+#grid {
+  display: grid;
+  place-items: center;
+}
+
+.row {
+  display: flex;
+}
+
+.case {
+  width: 80px; height: 80px;
+  border: 1px solid white;
+  display: grid;
+  place-items: center;
+}
+
+#characters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pion {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+}
+
+.red { background-color: red;}
+.blue { background-color: blue;}
 /* -------- word -------- */
 /* -------- word -------- */
 /* -------- word -------- */
