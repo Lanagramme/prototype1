@@ -104,6 +104,8 @@ const battle = {
     </div>
   `,
   callback: () => {
+    let i = 0
+    var Active = null
     let rows = 6
     let columns = 9
     for (let y = 0; y<rows; y++) {
@@ -119,7 +121,6 @@ const battle = {
       }
     }
 
-    let i = 0
     for (let player of players) {
       let pion = document.createElement('div')
       pion.classList = "pion " + player.color
@@ -147,7 +148,6 @@ const battle = {
       }
       Active = null
     })
-    var Active = null
   }
 }
 
