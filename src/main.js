@@ -151,7 +151,6 @@ const battle = {
   }
 }
 
-
 const menu = {
     jsx: `
       <div id="title-menu" class="screen">
