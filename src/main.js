@@ -113,7 +113,7 @@ const battle = {
       row.classList = "row"
       row.id = "row" + y
       document.querySelector("#grid").append(row)
-      for (let x = 0; x< columns; x++){
+      for (let x = 0; x<columns; x++){
         let Case = document.createElement('div')
         Case.classList = "case"
         Case.id = "x" + x + "y" + y
@@ -129,8 +129,7 @@ const battle = {
       document.querySelector(`#x${player.x}y${player.y}`).append(pion)
     }
 
-    $('.pion').click( e => {
-      // console.log(players[e.target.id])
+    $('.pion').click(e => {
       e.stopPropagation()
       Active = e.target.id
     })
